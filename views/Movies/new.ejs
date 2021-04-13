@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+
+</head>
+<body class="container">
+    <h1>New Movie</h1>
+    <form class="validate-form" method="POST" action="/movies" novalidate>
+        <div class="form-group">
+          <label for="Movie Title">Movie Title</label>
+          <input type="text" class="form-control" id="Movie Title" required name="title"aria-describedby="emailHelp" placeholder="Enter the Movie Title">
+          <div class="valid-feedback">Looks Good!</div>
+        </div>
+        <div class="form-group">
+          <label for="ReleaseDate">Release Date</label>
+          <input type="text" class="form-control" id="ReleaseDate" required name="ReleaseYear" placeholder="Enter the Release Date">
+          <div class="valid-feedback">Looks Good!</div>
+        </div>
+        <div class="form-group">
+            <label for="image">Enter the image url</label>
+          <input type="text" class="form-control" id="image"  name="poster" placeholder="Enter the image url here">
+        </div>
+        <div class="form-group">
+            <label for="image">Rating</label>
+          <input type="text" class="form-control" id="image" required name="Rating" placeholder="Movie Rating ex(R/G)">
+          <div class="valid-feedback">Looks Good!</div>
+        </div><br>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+      <script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+          (function () {
+            'use strict'
+
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            const forms = document.querySelectorAll('.validate-form')
+
+            // Loop over them and prevent submission
+            Array.prototype.slice.call(forms)
+              .forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                  if (!form.checkValidity()) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                  }
+
+                  form.classList.add('was-validated')
+                }, false)
+              })
+          })()
+      </script>
+</body>
+</html>

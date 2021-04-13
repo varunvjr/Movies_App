@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+</head>
+<body class="container">
+
+    <h1 class="text-center">Welcome to Movies Page Application</h1><br>
+    <button><a href="/signout">Logout</a></button>
+    <nav class="navbar navbar-light bg-light">
+      <form  action="/movies/search" method="POST" class="validation-form" novalidate>
+        <p>
+          <input class="form-control mr-sm-2" type="search" name="SearchMovie" placeholder="Search for a movie" aria-label="Search" required>
+          <button style="float: left;" class="btn btn-success" type="submit">Search</button>
+        </p>
+       
+      </form>
+    </nav>
+   
+    <h2 class="text-center">Movie Catalogue</h2><br>
+    <table class="table table-dark">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Title</th>
+            <th scope="col">Release Year</th>
+            <th scope="col">Rating</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Remove</th>
+          </tr>
+        </thead>
+        <tbody>
+            <%let count=0%>
+        <% for(let movie of movies){%> 
+          <tr>
+              <%count++%>
+            <th class="h4" scope="row"><%=count%></th>
+            <td class="h4"><%=movie.title%></td>
+            <td class="h4"><%=movie.ReleaseYear%></td>
+            <td class="h4"><%=movie.Rating%></td>
+            <td><a href="/movies/<%=movie._id%>/edit"><button  class="btn btn-success">Edit</button></a></td>
+            <td><form method="POST" action="/movies/<%=movie._id%>?_method=DELETE"><button type="submit" class="btn btn-danger">Remove</button></form></td>
+          </tr>
+       
+        <%}%>
+    </tbody>
+      </table>
+      
+          
+      <br><br> <a href="/movies/new"><button class="btn btn-primary "style="margin-left:38%">Add Movie</button></a>
+    <script>
+      // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function () {
+          'use strict'
+
+          // Fetch all the forms we want to apply custom Bootstrap validation styles to
+          var forms = document.querySelectorAll('.validation-form')
+
+          // Loop over them and prevent submission
+          Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+              form.addEventListener('submit', function (event) {
+                if (!form.checkValidity()) {
+                  event.preventDefault()
+                  event.stopPropagation()
+                }
+
+                form.classList.add('was-validated')
+              }, false)
+            })
+        })()
+    </script>
+</body>
+</html>
